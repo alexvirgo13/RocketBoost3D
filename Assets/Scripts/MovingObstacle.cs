@@ -10,6 +10,7 @@ public class MovingObstacle : MonoBehaviour
     void Start ()
     {
         transform.DOLocalMove(transform.localPosition + movement, duration)
+            .SetLink(gameObject)
             .SetEase(Ease.InOutSine)
             .SetLoops(-1, LoopType.Yoyo)
             .SetDelay(delay);

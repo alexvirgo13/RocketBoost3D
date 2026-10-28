@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollisionManager : MonoBehaviour
 {
@@ -27,12 +28,14 @@ public class CollisionManager : MonoBehaviour
         {
             case "LaunchPad":
 
-                break;
+                return;
             case "LandingPad":
                 ManageCollision(landingAudioClip, landingParticles);
+                Invoke("ReloadScene", 3.0f);
                 break;
             case "Explosion":
                 ManageCollision(explosionAudioClip, explosionParticles);
+                Invoke("ReloadScene", 1.5f);
                 break;
             default:
                 break;
@@ -51,5 +54,10 @@ public class CollisionManager : MonoBehaviour
 
         audioSource.PlayOneShot(audioClip);
         particles.Play();
+    }
+
+    private void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

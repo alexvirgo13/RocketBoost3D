@@ -10,6 +10,7 @@ public class RotatingObstacle : MonoBehaviour
     void Start ()
     {
         transform.DOLocalRotate(rotation, duration, RotateMode.FastBeyond360)
+            .SetLink(gameObject)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Restart)
             .SetDelay(delay);
